@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Our Little LovePet</title>
+  <title>Our Little Love House 🏠</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * {
@@ -18,33 +18,108 @@
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      padding: 16px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.9);
+    .house {
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 24px;
-      padding: 24px 28px;
-      max-width: 360px;
       width: 100%;
-      text-align: center;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-      backdrop-filter: blur(8px);
+      max-width: 440px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
-    h1 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
+    .house-header {
+      padding: 16px 18px 10px;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
     }
 
-    .subtitle {
+    .house-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .house-subtitle {
       font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 16px;
+      opacity: 0.9;
     }
 
+    .room-tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      padding: 8px 10px 10px;
+      background: #ffe4ec;
+    }
+
+    .room-tab {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      border: none;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      opacity: 0.8;
+      transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+    }
+
+    .room-tab.active {
+      background: white;
+      opacity: 1;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    .house-body {
+      padding: 14px 18px 16px;
+    }
+
+    .room {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .room.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    /* Pet room */
     .pet {
-      font-size: 4rem;
-      margin: 10px 0 6px 0;
+      font-size: 3.3rem;
+      text-align: center;
+      margin: 4px 0 6px 0;
       transition: transform 0.15s ease;
     }
 
@@ -57,7 +132,7 @@
       justify-content: center;
       gap: 16px;
       font-size: 0.9rem;
-      margin: 10px 0 16px 0;
+      margin-bottom: 12px;
     }
 
     .stat-label {
@@ -65,24 +140,25 @@
     }
 
     .message {
-      min-height: 41px;
-      font-size: 0.95rem;
+      min-height: 40px;
+      font-size: 0.9rem;
       color: #444;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+      text-align: center;
     }
 
-    .buttons {
+    .buttons-row {
       display: flex;
       gap: 10px;
       justify-content: center;
     }
 
-    button {
+    .btn-main {
       flex: 1;
       border: none;
       border-radius: 999px;
-      padding: 10px 12px;
-      font-size: 0.95rem;
+      padding: 9px 10px;
+      font-size: 0.9rem;
       cursor: pointer;
       background: #ff758c;
       color: white;
@@ -91,12 +167,12 @@
       transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
     }
 
-    button:hover {
+    .btn-main:hover {
       transform: translateY(-1px);
       box-shadow: 0 10px 18px rgba(255, 117, 140, 0.45);
     }
 
-    button:active {
+    .btn-main:active {
       transform: translateY(1px) scale(0.98);
       box-shadow: 0 3px 8px rgba(255, 117, 140, 0.35);
       opacity: 0.9;
@@ -104,42 +180,358 @@
 
     .footer-note {
       margin-top: 10px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #999;
+      text-align: center;
     }
+
+    /* Love room */
+    .love-meter {
+      margin: 10px 0;
+    }
+
+    .love-meter input[type="range"] {
+      width: 100%;
+    }
+
+    .love-output {
+      font-size: 0.9rem;
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    /* Text areas / lists */
+    .textarea {
+      width: 100%;
+      min-height: 80px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    .small-text {
+      font-size: 0.78rem;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .list {
+      margin-top: 8px;
+      max-height: 140px;
+      overflow-y: auto;
+      font-size: 0.88rem;
+    }
+
+    .list-item {
+      background: #f8f3f6;
+      border-radius: 10px;
+      padding: 6px 8px;
+      margin-bottom: 4px;
+    }
+
+    .btn-secondary {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: #ffe1ec;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* Game room */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      max-width: 200px;
+      margin: 10px auto;
+    }
+
+    .cell {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      font-size: 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      background: #fff5f8;
+    }
+
+    .game-status {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    /* Dress-up */
+    .avatars {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 2.4rem;
+      margin: 8px 0;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .select {
+      width: 100%;
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    .kitchen-list-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Our Little LovePet</h1>
-    <p class="subtitle">Feed it with your kisses and hugs 💖</p>
-
-    <div class="pet" id="pet">🐻</div>
-
-    <div class="stats">
-      <div>
-        <span class="stat-label">Kisses:</span>
-        <span id="kissCount">0</span>
+  <div class="house">
+    <header class="house-header">
+      <div class="house-title">
+        <span>🏠 Our Little Love House</span>
       </div>
-      <div>
-        <span class="stat-label">Hugs:</span>
-        <span id="hugCount">0</span>
+      <div class="house-subtitle">
+        Every room is a way I love you.
       </div>
+    </header>
+
+    <div class="room-tabs">
+      <button class="room-tab active" data-room="pet">🐾 Pet room</button>
+      <button class="room-tab" data-room="love">🛏 Love room</button>
+      <button class="room-tab" data-room="prayer">🕌 Prayer room</button>
+      <button class="room-tab" data-room="feelings">💬 Feelings room</button>
+      <button class="room-tab" data-room="game">🎮 Game room</button>
+      <button class="room-tab" data-room="future">🗺 Future room</button>
+      <button class="room-tab" data-room="letters">📬 Letters room</button>
+      <button class="room-tab" data-room="dressup">👗 Dress-up room</button>
+      <button class="room-tab" data-room="kitchen">🍳 Kitchen</button>
     </div>
 
-    <p class="message" id="message">Hi my love, I’m your tiny pet 👋</p>
+    <main class="house-body">
+      <!-- PET ROOM -->
+      <section class="room active" id="room-pet">
+        <div class="section-title">🐾 Pet room</div>
+        <div class="section-subtitle">Feed our little pet with your hugs and kisses.</div>
 
-    <div class="buttons">
-      <button id="kissBtn">Send Kiss 💋</button>
-      <button id="hugBtn">Send Hug 🤗</button>
-    </div>
+        <div class="pet" id="pet">🐻‍❄️</div>
 
-    <p class="footer-note">
-      Made with love ❤️
-    </p>
+        <div class="stats">
+          <div>
+            <span class="stat-label">Kisses:</span>
+            <span id="kissCount">0</span>
+          </div>
+          <div>
+            <span class="stat-label">Hugs:</span>
+            <span id="hugCount">0</span>
+          </div>
+        </div>
+
+        <p class="message" id="message">Hi my love, I’m your tiny pet 👋</p>
+
+        <div class="buttons-row">
+          <button class="btn-main" id="kissBtn">Send Kiss 💋</button>
+          <button class="btn-main" id="hugBtn">Send Hug 🤗</button>
+        </div>
+
+        <p class="footer-note">
+          This pet only survives on your love.
+        </p>
+      </section>
+
+      <!-- LOVE ROOM -->
+      <section class="room" id="room-love">
+        <div class="section-title">🛏 Love room</div>
+        <div class="section-subtitle">Just you and me, my favourite place.</div>
+
+        <div class="love-meter">
+          <label for="loveRange" style="font-size:0.9rem;">How much do you love me today? (drag it 👉)</label>
+          <input type="range" id="loveRange" min="80" max="100" value="100" />
+          <div class="love-output" id="loveOutput">Love level: 100% (always max 🤍)</div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button class="btn-main" id="loveNoteBtn" style="width:100%;">Give me a love note ✉️</button>
+          <p class="message" id="loveNoteMessage" style="margin-top:8px; min-height:36px;">
+            This room is only ours, no one else allowed.
+          </p>
+        </div>
+      </section>
+
+      <!-- PRAYER ROOM -->
+      <section class="room" id="room-prayer">
+        <div class="section-title">🕌 Prayer room</div>
+        <div class="section-subtitle">
+          Du’a for us, our future, and our hearts.
+        </div>
+
+        <textarea class="textarea" id="duaInput" placeholder="Write a small du’a or wish for us..."></textarea>
+        <button class="btn-secondary" id="addDuaBtn">Add to our du’a wall</button>
+        <p class="small-text">These stay on your device only, between you and Allah 🤍</p>
+
+        <div class="list" id="duaList"></div>
+      </section>
+
+      <!-- FEELINGS ROOM -->
+      <section class="room" id="room-feelings">
+        <div class="section-title">💬 Feelings room</div>
+        <div class="section-subtitle">
+          A safe little corner to write how you feel.
+        </div>
+
+        <textarea class="textarea" id="feelingsInput" placeholder="Today I feel..."></textarea>
+        <button class="btn-secondary" id="copyFeelingsBtn">Copy to share with you</button>
+        <p class="small-text">
+          You can paste this into WhatsApp or keep it just for yourself.
+        </p>
+      </section>
+
+      <!-- GAME ROOM -->
+      <section class="room" id="room-game">
+        <div class="section-title">🎮 Game room</div>
+        <div class="section-subtitle">
+          Tiny X and O game for when we’re bored or on call.
+        </div>
+
+        <div class="board" id="board"></div>
+        <div class="game-status" id="gameStatus">Your turn: X</div>
+        <div style="text-align:center;">
+          <button class="btn-secondary" id="resetGameBtn">Reset game</button>
+        </div>
+      </section>
+
+      <!-- FUTURE ROOM -->
+      <section class="room" id="room-future">
+        <div class="section-title">🗺 Future room</div>
+        <div class="section-subtitle">
+          Our plans, dreams and things we’re excited to do together.
+        </div>
+
+        <textarea class="textarea" id="futureInput" placeholder="Trip we want to take, thing we want to do, goal we have..."></textarea>
+        <button class="btn-secondary" id="addFutureBtn">Add to our future board</button>
+        <p class="small-text">
+          Just our roadmap, one dream at a time.
+        </p>
+
+        <div class="list" id="futureList"></div>
+      </section>
+
+      <!-- LETTERS ROOM -->
+      <section class="room" id="room-letters">
+        <div class="section-title">📬 Letters room</div>
+        <div class="section-subtitle">
+          Little letters from me to you, whenever you need to feel close.
+        </div>
+
+        <button class="btn-main" id="openLetterBtn" style="width:100%;">Open a letter 💌</button>
+        <p class="message" id="letterMessage" style="margin-top:8px; min-height:60px;">
+          Your mailbox is always full of love, never spam.
+        </p>
+
+        <p class="small-text">
+          In the future I can add more long letters here just for you.
+        </p>
+      </section>
+
+      <!-- DRESS-UP ROOM -->
+      <section class="room" id="room-dressup">
+        <div class="section-title">👗 Dress-up room</div>
+        <div class="section-subtitle">
+          Our little avatar closet for future outfits and styles.
+        </div>
+
+        <div class="avatars">
+          <span id="avatarYou">🧑‍💻</span>
+          <span id="avatarHer">👰‍♀️</span>
+        </div>
+        <p class="tagline" id="dressupTagline">
+          Today’s vibe: comfy and dreaming of each other.
+        </p>
+
+        <select class="select" id="outfitSelect">
+          <option value="comfy">Comfy hoodie and sweatpants day</option>
+          <option value="fancy">Fancy date night, all dressed up</option>
+          <option value="wedding">Wedding outfits, signing our papers inshaAllah</option>
+          <option value="travel">Airport outfits, finally flying to each other</option>
+          <option value="home">At home outfits, cooking and laughing together</option>
+        </select>
+
+        <p class="small-text">
+          Later we can upgrade this with real custom avatars and outfits.
+        </p>
+      </section>
+
+      <!-- KITCHEN ROOM -->
+      <section class="room" id="room-kitchen">
+        <div class="section-title">🍳 Kitchen</div>
+        <div class="section-subtitle">
+          Things we want to cook, bake and eat together.
+        </div>
+
+        <textarea class="textarea" id="kitchenInput" placeholder="Dish to cook together, dessert to try, breakfast plan..."></textarea>
+        <button class="btn-secondary" id="addKitchenBtn">Add to our recipe list</button>
+        <p class="small-text">
+          One day, same kitchen inshaAllah. For now we plan the menu.
+        </p>
+
+        <div class="kitchen-list-title">Our future menu:</div>
+        <div class="list" id="kitchenList"></div>
+      </section>
+
+    </main>
   </div>
 
   <script>
+    // ---------- Room navigation ----------
+    const tabs = document.querySelectorAll(".room-tab");
+    const rooms = {
+      pet: document.getElementById("room-pet"),
+      love: document.getElementById("room-love"),
+      prayer: document.getElementById("room-prayer"),
+      feelings: document.getElementById("room-feelings"),
+      game: document.getElementById("room-game"),
+      future: document.getElementById("room-future"),
+      letters: document.getElementById("room-letters"),
+      dressup: document.getElementById("room-dressup"),
+      kitchen: document.getElementById("room-kitchen"),
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const roomName = tab.getAttribute("data-room");
+
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        Object.values(rooms).forEach(r => r.classList.remove("active"));
+        rooms[roomName].classList.add("active");
+      });
+    });
+
+    function randomFrom(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    // ---------- Pet room ----------
     const kissBtn = document.getElementById("kissBtn");
     const hugBtn = document.getElementById("hugBtn");
     const kissCountEl = document.getElementById("kissCount");
@@ -147,27 +539,27 @@
     const messageEl = document.getElementById("message");
     const petEl = document.getElementById("pet");
 
-    const STORAGE_KEY = "lovepet_stats_v1";
+    const STORAGE_KEY_PET = "lovehouse_pet_stats_v1";
 
-    function loadStats() {
+    function loadPetStats() {
       try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_PET));
         if (saved && typeof saved.kisses === "number" && typeof saved.hugs === "number") {
           return saved;
         }
       } catch (e) {
-        console.warn("Could not parse saved LovePet stats:", e);
+        console.warn("Could not parse saved pet stats:", e);
       }
       return { kisses: 0, hugs: 0 };
     }
 
-    function saveStats(stats) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+    function savePetStats(stats) {
+      localStorage.setItem(STORAGE_KEY_PET, JSON.stringify(stats));
     }
 
-    let stats = loadStats();
-    kissCountEl.textContent = stats.kisses;
-    hugCountEl.textContent = stats.hugs;
+    let petStats = loadPetStats();
+    kissCountEl.textContent = petStats.kisses;
+    hugCountEl.textContent = petStats.hugs;
 
     const kissMessages = [
       "Kiss received 💋 I love you more.",
@@ -183,29 +575,301 @@
       "That hug just upgraded my heart firmware 🥹"
     ];
 
-    function randomFrom(list) {
-      return list[Math.floor(Math.random() * list.length)];
-    }
-
     function animatePet() {
       petEl.classList.add("bounce");
       setTimeout(() => petEl.classList.remove("bounce"), 160);
     }
 
     kissBtn.addEventListener("click", () => {
-      stats.kisses += 1;
-      kissCountEl.textContent = stats.kisses;
+      petStats.kisses += 1;
+      kissCountEl.textContent = petStats.kisses;
       messageEl.textContent = randomFrom(kissMessages);
-      saveStats(stats);
+      savePetStats(petStats);
       animatePet();
     });
 
     hugBtn.addEventListener("click", () => {
-      stats.hugs += 1;
-      hugCountEl.textContent = stats.hugs;
+      petStats.hugs += 1;
+      hugCountEl.textContent = petStats.hugs;
       messageEl.textContent = randomFrom(hugMessages);
-      saveStats(stats);
+      savePetStats(petStats);
       animatePet();
+    });
+
+    // ---------- Love room ----------
+    const loveRange = document.getElementById("loveRange");
+    const loveOutput = document.getElementById("loveOutput");
+    const loveNoteBtn = document.getElementById("loveNoteBtn");
+    const loveNoteMessage = document.getElementById("loveNoteMessage");
+
+    loveRange.addEventListener("input", () => {
+      loveOutput.textContent = `Love level: ${loveRange.value}% (never below 80 😏)`;
+    });
+
+    const loveNotes = [
+      "If I could choose again, I’d still choose you in every lifetime.",
+      "You are my safest place and my biggest adventure at the same time.",
+      "Every version of my future has you in it.",
+      "You’re not just my fiancée, you’re my favourite person in the whole dunya."
+    ];
+
+    loveNoteBtn.addEventListener("click", () => {
+      loveNoteMessage.textContent = randomFrom(loveNotes);
+    });
+
+    // ---------- Prayer room ----------
+    const duaInput = document.getElementById("duaInput");
+    const addDuaBtn = document.getElementById("addDuaBtn");
+    const duaList = document.getElementById("duaList");
+    const STORAGE_KEY_DUA = "lovehouse_duas_v1";
+
+    function loadDuas() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_DUA));
+        if (Array.isArray(saved)) return saved;
+      } catch (e) {
+        console.warn("Could not parse duas:", e);
+      }
+      return [];
+    }
+
+    function saveDuas(duas) {
+      localStorage.setItem(STORAGE_KEY_DUA, JSON.stringify(duas));
+    }
+
+    let duas = loadDuas();
+
+    function renderDuas() {
+      duaList.innerHTML = "";
+      duas.forEach(text => {
+        const div = document.createElement("div");
+        div.className = "list-item";
+        div.textContent = text;
+        duaList.appendChild(div);
+      });
+    }
+
+    renderDuas();
+
+    addDuaBtn.addEventListener("click", () => {
+      const text = duaInput.value.trim();
+      if (!text) return;
+      duas.unshift(text);
+      saveDuas(duas);
+      renderDuas();
+      duaInput.value = "";
+    });
+
+    // ---------- Feelings room ----------
+    const feelingsInput = document.getElementById("feelingsInput");
+    const copyFeelingsBtn = document.getElementById("copyFeelingsBtn");
+
+    copyFeelingsBtn.addEventListener("click", async () => {
+      const text = feelingsInput.value.trim();
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Feelings copied 💌 You can paste them in WhatsApp now.");
+      } catch (e) {
+        alert("Could not copy automatically. You can manually select and copy.");
+      }
+    });
+
+    // ---------- Game room ----------
+    const boardEl = document.getElementById("board");
+    const gameStatus = document.getElementById("gameStatus");
+    const resetGameBtn = document.getElementById("resetGameBtn");
+
+    let board = Array(9).fill(null);
+    let currentPlayer = "X";
+    let gameOver = false;
+
+    function createBoard() {
+      boardEl.innerHTML = "";
+      board.forEach((val, idx) => {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.dataset.index = idx;
+        cell.textContent = val || "";
+        cell.addEventListener("click", onCellClick);
+        boardEl.appendChild(cell);
+      });
+    }
+
+    function checkWinner() {
+      const lines = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+      for (const [a,b,c] of lines) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          return board[a];
+        }
+      }
+      if (board.every(v => v)) return "draw";
+      return null;
+    }
+
+    function onCellClick(e) {
+      if (gameOver) return;
+      const idx = parseInt(e.currentTarget.dataset.index, 10);
+      if (board[idx]) return;
+      board[idx] = currentPlayer;
+      createBoard();
+      const result = checkWinner();
+      if (result === "draw") {
+        gameStatus.textContent = "Draw! Play again? 😊";
+        gameOver = true;
+      } else if (result) {
+        gameStatus.textContent = `Player ${result} wins! 🎉`;
+        gameOver = true;
+      } else {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        gameStatus.textContent = `Your turn: ${currentPlayer}`;
+      }
+    }
+
+    function resetGame() {
+      board = Array(9).fill(null);
+      currentPlayer = "X";
+      gameOver = false;
+      gameStatus.textContent = "Your turn: X";
+      createBoard();
+    }
+
+    resetGameBtn.addEventListener("click", resetGame);
+    createBoard();
+
+    // ---------- Future room ----------
+    const futureInput = document.getElementById("futureInput");
+    const addFutureBtn = document.getElementById("addFutureBtn");
+    const futureList = document.getElementById("futureList");
+    const STORAGE_KEY_FUTURE = "lovehouse_future_v1";
+
+    function loadFuture() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_FUTURE));
+        if (Array.isArray(saved)) return saved;
+      } catch (e) {
+        console.warn("Could not parse future list:", e);
+      }
+      return [];
+    }
+
+    function saveFuture(arr) {
+      localStorage.setItem(STORAGE_KEY_FUTURE, JSON.stringify(arr));
+    }
+
+    let futureItems = loadFuture();
+
+    function renderFuture() {
+      futureList.innerHTML = "";
+      futureItems.forEach(text => {
+        const div = document.createElement("div");
+        div.className = "list-item";
+        div.textContent = text;
+        futureList.appendChild(div);
+      });
+    }
+
+    renderFuture();
+
+    addFutureBtn.addEventListener("click", () => {
+      const text = futureInput.value.trim();
+      if (!text) return;
+      futureItems.unshift(text);
+      saveFuture(futureItems);
+      renderFuture();
+      futureInput.value = "";
+    });
+
+    // ---------- Letters room ----------
+    const openLetterBtn = document.getElementById("openLetterBtn");
+    const letterMessage = document.getElementById("letterMessage");
+
+    const letters = [
+      "My love, even on the days we are far, you are the closest thing to my heart. I am building this little house so you always have a place with me, on your screen and in my life.",
+      "One day this will be a real house, not just pixels. Until then, every click is me holding your hand and promising you: I’m not going anywhere.",
+      "When things are heavy, remember this: you are not carrying them alone. I am right here, making du’a for you, cheering for you, and loving you more than you know.",
+      "You are my favourite notification, my favourite tab, my favourite everything. If life is a project, then you are my main feature, not a side task."
+    ];
+
+    openLetterBtn.addEventListener("click", () => {
+      letterMessage.textContent = randomFrom(letters);
+    });
+
+    // ---------- Dress-up room ----------
+    const outfitSelect = document.getElementById("outfitSelect");
+    const dressupTagline = document.getElementById("dressupTagline");
+    const avatarYou = document.getElementById("avatarYou");
+    const avatarHer = document.getElementById("avatarHer");
+
+    outfitSelect.addEventListener("change", () => {
+      const value = outfitSelect.value;
+      if (value === "comfy") {
+        dressupTagline.textContent = "Comfy outfits, movie night and long calls.";
+        avatarYou.textContent = "🧑‍💻";
+        avatarHer.textContent = "🧕";
+      } else if (value === "fancy") {
+        dressupTagline.textContent = "Fancy date night, both of us looking 11/10.";
+        avatarYou.textContent = "🤵";
+        avatarHer.textContent = "👸";
+      } else if (value === "wedding") {
+        dressupTagline.textContent = "Wedding outfits, signing our papers inshaAllah.";
+        avatarYou.textContent = "🤵‍♂️";
+        avatarHer.textContent = "👰‍♀️";
+      } else if (value === "travel") {
+        dressupTagline.textContent = "Airport outfits, finally closing the distance.";
+        avatarYou.textContent = "🧑‍✈️";
+        avatarHer.textContent = "🧳";
+      } else if (value === "home") {
+        dressupTagline.textContent = "At home clothes, cooking together and laughing.";
+        avatarYou.textContent = "🧑‍🍳";
+        avatarHer.textContent = "👩‍🍳";
+      }
+    });
+
+    // ---------- Kitchen room ----------
+    const kitchenInput = document.getElementById("kitchenInput");
+    const addKitchenBtn = document.getElementById("addKitchenBtn");
+    const kitchenList = document.getElementById("kitchenList");
+    const STORAGE_KEY_KITCHEN = "lovehouse_kitchen_v1";
+
+    function loadKitchen() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_KITCHEN));
+        if (Array.isArray(saved)) return saved;
+      } catch (e) {
+      }
+      return [];
+    }
+
+    function saveKitchen(arr) {
+      localStorage.setItem(STORAGE_KEY_KITCHEN, JSON.stringify(arr));
+    }
+
+    let kitchenItems = loadKitchen();
+
+    function renderKitchen() {
+      kitchenList.innerHTML = "";
+      kitchenItems.forEach(text => {
+        const div = document.createElement("div");
+        div.className = "list-item";
+        div.textContent = text;
+        kitchenList.appendChild(div);
+      });
+    }
+
+    renderKitchen();
+
+    addKitchenBtn.addEventListener("click", () => {
+      const text = kitchenInput.value.trim();
+      if (!text) return;
+      kitchenItems.unshift(text);
+      saveKitchen(kitchenItems);
+      renderKitchen();
+      kitchenInput.value = "";
     });
   </script>
 </body>
