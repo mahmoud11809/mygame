@@ -17,22 +17,141 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: radial-gradient(circle at top, #ffe0ea 0, #ff9a9e 30%, #fad0c4 70%);
       padding: 16px;
     }
 
+    .shell {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    /* LANDING / FRONT DOOR */
+
+    .landing {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 22px 22px 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .landing-house {
+      margin: 10px auto 14px;
+      width: 140px;
+      position: relative;
+    }
+
+    .roof {
+      width: 0;
+      height: 0;
+      border-left: 70px solid transparent;
+      border-right: 70px solid transparent;
+      border-bottom: 45px solid #ff758c;
+      margin: 0 auto;
+    }
+
+    .front {
+      background: #fff;
+      border-radius: 0 0 18px 18px;
+      padding: 18px 14px 12px;
+      border: 2px solid #ffd2de;
+      position: relative;
+    }
+
+    .door {
+      width: 40px;
+      height: 52px;
+      background: #ffb3c8;
+      border-radius: 10px 10px 3px 3px;
+      margin: 0 auto;
+      margin-top: 6px;
+      position: relative;
+    }
+
+    .door::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e07391;
+      position: absolute;
+      right: 8px;
+      top: 24px;
+    }
+
+    .window-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .window {
+      flex: 1;
+      height: 26px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ffe6f0, #fff);
+      border: 1px solid #ffd8e5;
+    }
+
+    .landing h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .landing p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: #ff758c;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(255, 117, 140, 0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(255, 117, 140, 0.55);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 3px 8px rgba(255, 117, 140, 0.4);
+      opacity: 0.95;
+    }
+
+    .landing-note {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* MAIN HOUSE APP */
+
     .house {
+      display: none;
       background: rgba(255, 255, 255, 0.96);
       border-radius: 24px;
       width: 100%;
-      max-width: 440px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
       overflow: hidden;
       backdrop-filter: blur(10px);
     }
 
     .house-header {
-      padding: 16px 18px 10px;
+      padding: 14px 18px 10px;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       color: white;
     }
@@ -41,54 +160,123 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .house-subtitle {
-      font-size: 0.9rem;
-      opacity: 0.9;
+      font-size: 0.86rem;
+      opacity: 0.95;
     }
 
-    .room-tabs {
+    /* TOUR BAR + MAP */
+
+    .tour-bar {
+      padding: 8px 14px 10px;
+      background: #ffe7f0;
+      border-bottom: 1px solid #ffd3e2;
+      font-size: 0.82rem;
       display: flex;
-      overflow-x: auto;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 6px;
-      padding: 8px 10px 10px;
-      background: #ffe4ec;
+      justify-content: space-between;
     }
 
-    .room-tab {
-      flex: 0 0 auto;
-      border-radius: 999px;
+    .tour-text-main {
+      font-weight: 600;
+    }
+
+    .tour-text-sub {
+      opacity: 0.8;
+      font-size: 0.78rem;
+    }
+
+    .btn-tour {
       border: none;
-      padding: 6px 10px;
+      border-radius: 999px;
+      padding: 5px 10px;
       font-size: 0.78rem;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.9);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-      opacity: 0.8;
-      transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
-    }
-
-    .room-tab.active {
-      background: white;
-      opacity: 1;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      background: #ffffff;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .house-body {
-      padding: 14px 18px 16px;
+      padding: 10px 14px 14px;
     }
+
+    .house-map {
+      border-radius: 18px;
+      border: 1px solid #ffe0ed;
+      padding: 10px 10px 8px;
+      background: linear-gradient(180deg, #fff8fb, #ffffff);
+      margin-bottom: 10px;
+    }
+
+    .map-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-floorplan {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .room-tile {
+      border-radius: 12px;
+      padding: 6px 7px;
+      font-size: 0.8rem;
+      background: #ffffff;
+      border: 1px solid #ffd6e6;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background 0.12s ease, transform 0.1s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .room-tile-emoji {
+      font-size: 1.2rem;
+    }
+
+    .room-tile-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .room-tile-name {
+      font-weight: 600;
+    }
+
+    .room-tile-note {
+      font-size: 0.7rem;
+      color: #777;
+    }
+
+    .room-tile.active {
+      background: #ffe8f3;
+      border-color: #ff9ec0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+      transform: translateY(-1px);
+    }
+
+    /* ROOMS CONTENT */
 
     .room {
       display: none;
       animation: fadeIn 0.2s ease;
+      margin-top: 6px;
     }
 
     .room.active {
@@ -103,23 +291,24 @@
     .section-title {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .section-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: #666;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    /* Pet room */
+    /* PET ROOM */
+
     .pet {
       font-size: 3.3rem;
       text-align: center;
-      margin: 4px 0 6px 0;
+      margin: 2px 0 4px 0;
       transition: transform 0.15s ease;
     }
 
@@ -131,8 +320,8 @@
       display: flex;
       justify-content: center;
       gap: 16px;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
     }
 
     .stat-label {
@@ -143,7 +332,7 @@
       min-height: 40px;
       font-size: 0.9rem;
       color: #444;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -157,7 +346,7 @@
       flex: 1;
       border: none;
       border-radius: 999px;
-      padding: 9px 10px;
+      padding: 8px 10px;
       font-size: 0.9rem;
       cursor: pointer;
       background: #ff758c;
@@ -179,15 +368,16 @@
     }
 
     .footer-note {
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 0.75rem;
       color: #999;
       text-align: center;
     }
 
-    /* Love room */
+    /* LOVE ROOM */
+
     .love-meter {
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     .love-meter input[type="range"] {
@@ -200,7 +390,8 @@
       text-align: center;
     }
 
-    /* Text areas / lists */
+    /* TEXT AREAS / LISTS */
+
     .textarea {
       width: 100%;
       min-height: 80px;
@@ -242,13 +433,14 @@
       margin-top: 8px;
     }
 
-    /* Game room */
+    /* GAME ROOM */
+
     .board {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
       max-width: 200px;
-      margin: 10px auto;
+      margin: 8px auto;
     }
 
     .cell {
@@ -271,7 +463,8 @@
       margin-top: 6px;
     }
 
-    /* Dress-up */
+    /* DRESS-UP */
+
     .avatars {
       display: flex;
       justify-content: center;
@@ -301,208 +494,324 @@
       font-weight: 500;
       margin-top: 8px;
     }
-
   </style>
 </head>
 <body>
-  <div class="house">
-    <header class="house-header">
-      <div class="house-title">
-        <span>🏠 Our Little Love House</span>
+  <div class="shell">
+    <!-- FRONT DOOR / LANDING -->
+    <div class="landing" id="landing">
+      <div class="landing-house">
+        <div class="roof"></div>
+        <div class="front">
+          <div class="window-row">
+            <div class="window"></div>
+            <div class="window"></div>
+          </div>
+          <div class="door"></div>
+        </div>
       </div>
-      <div class="house-subtitle">
-        Every room in here is just me being extra about how much I love you, habibti.
+      <h1>Welcome to Our Love House</h1>
+      <p>
+        A tiny house I built just for you, habibti.  
+        Every room is a different way I love you.
+      </p>
+      <button class="btn-primary" id="enterHouseBtn">🚪 Enter the house</button>
+      <div class="landing-note">
+        (Best experienced with volume of love at 100%)
       </div>
-    </header>
-
-    <div class="room-tabs">
-      <button class="room-tab active" data-room="pet">🐾 Pet room</button>
-      <button class="room-tab" data-room="love">🛏 Love room</button>
-      <button class="room-tab" data-room="prayer">🕌 Prayer room</button>
-      <button class="room-tab" data-room="feelings">💬 Feelings room</button>
-      <button class="room-tab" data-room="game">🎮 Game room</button>
-      <button class="room-tab" data-room="future">🗺 Future room</button>
-      <button class="room-tab" data-room="letters">📬 Letters room</button>
-      <button class="room-tab" data-room="dressup">👗 Dress-up room</button>
-      <button class="room-tab" data-room="kitchen">🍳 Kitchen</button>
     </div>
 
-    <main class="house-body">
-      <!-- PET ROOM -->
-      <section class="room active" id="room-pet">
-        <div class="section-title">🐾 Pet room</div>
-        <div class="section-subtitle">Our tiny pet that survives only on your hugs and kisses.</div>
+    <!-- MAIN HOUSE APP -->
+    <div class="house" id="house">
+      <header class="house-header">
+        <div class="house-title">
+          <span>🏠 Our Little Love House</span>
+        </div>
+        <div class="house-subtitle">
+          House tour: I’ll walk you room by room through how much I love you.
+        </div>
+      </header>
 
-        <div class="pet" id="pet">🐻‍❄️</div>
+      <div class="tour-bar">
+        <div>
+          <span class="tour-text-main" id="tourLocationText">
+            You walk into the 🐾 Pet room.
+          </span><br />
+          <span class="tour-text-sub">
+            Tap a room on the map, or follow the tour.
+          </span>
+        </div>
+        <button class="btn-tour" id="nextRoomBtn">Next room on the tour ➜</button>
+      </div>
 
-        <div class="stats">
-          <div>
-            <span class="stat-label">Kisses:</span>
-            <span id="kissCount">0</span>
+      <main class="house-body">
+        <!-- House map / floorplan -->
+        <section class="house-map">
+          <div class="map-title">
+            <span>House map</span>
+            <span style="font-size:0.74rem;color:#999;">Tap a room to go there</span>
           </div>
-          <div>
-            <span class="stat-label">Hugs:</span>
-            <span id="hugCount">0</span>
+          <div class="map-floorplan" id="mapFloorplan">
+            <!-- Tiles will be created by JS -->
           </div>
-        </div>
+        </section>
 
-        <p class="message" id="message">Salam ya habibti, I’m your tiny pet 👋</p>
+        <!-- ROOMS CONTENT -->
 
-        <div class="buttons-row">
-          <button class="btn-main" id="kissBtn">Send Kiss 💋</button>
-          <button class="btn-main" id="hugBtn">Send Hug 🤗</button>
-        </div>
+        <!-- PET ROOM -->
+        <section class="room active" id="room-pet">
+          <div class="section-title">🐾 Pet room</div>
+          <div class="section-subtitle">
+            First stop: our tiny pet that survives only on your hugs and kisses.
+          </div>
 
-        <p class="footer-note">
-          If one day the numbers here are huge, that’s still less than how much I love you.
-        </p>
-      </section>
+          <div class="pet" id="pet">🐻‍❄️</div>
 
-      <!-- LOVE ROOM -->
-      <section class="room" id="room-love">
-        <div class="section-title">🛏 Love room</div>
-        <div class="section-subtitle">Just you and me, no dunya stress allowed here.</div>
+          <div class="stats">
+            <div>
+              <span class="stat-label">Kisses:</span>
+              <span id="kissCount">0</span>
+            </div>
+            <div>
+              <span class="stat-label">Hugs:</span>
+              <span id="hugCount">0</span>
+            </div>
+          </div>
 
-        <div class="love-meter">
-          <label for="loveRange" style="font-size:0.9rem;">How much do you love me today? (we both know the answer 😏)</label>
-          <input type="range" id="loveRange" min="80" max="100" value="100" />
-          <div class="love-output" id="loveOutput">Love level: 100% (default setting for us 🤍)</div>
-        </div>
+          <p class="message" id="message">Salam ya habibti, I’m your tiny pet 👋</p>
 
-        <div style="margin-top:12px;">
-          <button class="btn-main" id="loveNoteBtn" style="width:100%;">Give me a love note ✉️</button>
-          <p class="message" id="loveNoteMessage" style="margin-top:8px; min-height:36px;">
-            This room is just me and you, ya rohi.
+          <div class="buttons-row">
+            <button class="btn-main" id="kissBtn">Send Kiss 💋</button>
+            <button class="btn-main" id="hugBtn">Send Hug 🤗</button>
+          </div>
+
+          <p class="footer-note">
+            If one day the numbers here are huge, that’s still less than how much I love you.
           </p>
-        </div>
-      </section>
+        </section>
 
-      <!-- PRAYER ROOM -->
-      <section class="room" id="room-prayer">
-        <div class="section-title">🕌 Prayer room</div>
-        <div class="section-subtitle">
-          Write your du’a for us here. Allah is taking care of the rest, inshaAllah.
-        </div>
+        <!-- LOVE ROOM -->
+        <section class="room" id="room-love">
+          <div class="section-title">🛏 Love room</div>
+          <div class="section-subtitle">
+            This is our room. No stress, no drama, just me and you.
+          </div>
 
-        <textarea class="textarea" id="duaInput" placeholder="Write a small du’a or wish for me and you..."></textarea>
-        <button class="btn-secondary" id="addDuaBtn">Add to our du’a wall</button>
-        <p class="small-text">These stay on your device only. Between you, your heart, and Allah 🤍</p>
+          <div class="love-meter">
+            <label for="loveRange" style="font-size:0.9rem;">
+              How much do you love me today? (we both know it’s max 😏)
+            </label>
+            <input type="range" id="loveRange" min="80" max="100" value="100" />
+            <div class="love-output" id="loveOutput">
+              Love level: 100% (default setting for us 🤍)
+            </div>
+          </div>
 
-        <div class="list" id="duaList"></div>
-      </section>
+          <div style="margin-top:10px;">
+            <button class="btn-main" id="loveNoteBtn" style="width:100%;">Give me a love note ✉️</button>
+            <p class="message" id="loveNoteMessage" style="margin-top:8px; min-height:36px;">
+              This room is just me and you, ya rohi.
+            </p>
+          </div>
+        </section>
 
-      <!-- FEELINGS ROOM -->
-      <section class="room" id="room-feelings">
-        <div class="section-title">💬 Feelings room</div>
-        <div class="section-subtitle">
-          A safe little corner to empty your heart, even on days it’s hard to talk.
-        </div>
+        <!-- PRAYER ROOM -->
+        <section class="room" id="room-prayer">
+          <div class="section-title">🕌 Prayer room</div>
+          <div class="section-subtitle">
+            Here we leave du’a for our future and trust Allah with the timing.
+          </div>
 
-        <textarea class="textarea" id="feelingsInput" placeholder="Today I feel..."></textarea>
-        <button class="btn-secondary" id="copyFeelingsBtn">Copy to share with me</button>
-        <p class="small-text">
-          You can paste this into WhatsApp, or keep it here just for you.
-        </p>
-      </section>
+          <textarea class="textarea" id="duaInput" placeholder="Write a small du’a or wish for me and you..."></textarea>
+          <button class="btn-secondary" id="addDuaBtn">Add to our du’a wall</button>
+          <p class="small-text">
+            These stay on your device only. Between you, your heart, and Allah 🤍
+          </p>
 
-      <!-- GAME ROOM -->
-      <section class="room" id="room-game">
-        <div class="section-title">🎮 Game room</div>
-        <div class="section-subtitle">
-          Tiny X and O game for calls, boredom, or when you just want to beat me.
-        </div>
+          <div class="list" id="duaList"></div>
+        </section>
 
-        <div class="board" id="board"></div>
-        <div class="game-status" id="gameStatus">Your turn: X</div>
-        <div style="text-align:center;">
-          <button class="btn-secondary" id="resetGameBtn">Reset game</button>
-        </div>
-      </section>
+        <!-- FEELINGS ROOM -->
+        <section class="room" id="room-feelings">
+          <div class="section-title">💬 Feelings room</div>
+          <div class="section-subtitle">
+            A soft corner for days when your heart is heavy or extra happy.
+          </div>
 
-      <!-- FUTURE ROOM -->
-      <section class="room" id="room-future">
-        <div class="section-title">🗺 Future room</div>
-        <div class="section-subtitle">
-          All the things we’re going to do together inshaAllah.
-        </div>
+          <textarea class="textarea" id="feelingsInput" placeholder="Today I feel..."></textarea>
+          <button class="btn-secondary" id="copyFeelingsBtn">Copy to share with me</button>
+          <p class="small-text">
+            Paste this into WhatsApp, or leave it here just for you.
+          </p>
+        </section>
 
-        <textarea class="textarea" id="futureInput" placeholder="Trips, goals, little dreams... write one here."></textarea>
-        <button class="btn-secondary" id="addFutureBtn">Add to our future board</button>
-        <p class="small-text">
-          One day we’ll look back at this list and say: Alhamdulillah, we did it.
-        </p>
+        <!-- GAME ROOM -->
+        <section class="room" id="room-game">
+          <div class="section-title">🎮 Game room</div>
+          <div class="section-subtitle">
+            Our little X and O corner. Perfect for calls, boredom, or friendly beef.
+          </div>
 
-        <div class="list" id="futureList"></div>
-      </section>
+          <div class="board" id="board"></div>
+          <div class="game-status" id="gameStatus">Your turn: X</div>
+          <div style="text-align:center;">
+            <button class="btn-secondary" id="resetGameBtn">Reset game</button>
+          </div>
+        </section>
 
-      <!-- LETTERS ROOM -->
-      <section class="room" id="room-letters">
-        <div class="section-title">📬 Letters room</div>
-        <div class="section-subtitle">
-          When you miss me, open a letter and pretend I just sent it right now.
-        </div>
+        <!-- FUTURE ROOM -->
+        <section class="room" id="room-future">
+          <div class="section-title">🗺 Future room</div>
+          <div class="section-subtitle">
+            All the small and big things we’re going to do together inshaAllah.
+          </div>
 
-        <button class="btn-main" id="openLetterBtn" style="width:100%;">Open a letter 💌</button>
-        <p class="message" id="letterMessage" style="margin-top:8px; min-height:60px;">
-          Your mailbox is always full here, never “seen 2:14 am, no reply”.
-        </p>
+          <textarea class="textarea" id="futureInput" placeholder="Trips, goals, little dreams... write one here."></textarea>
+          <button class="btn-secondary" id="addFutureBtn">Add to our future board</button>
+          <p class="small-text">
+            One day we’ll look back at this list and say: Alhamdulillah, we did it.
+          </p>
 
-        <p class="small-text">
-          Later I’ll add more long letters written just for you, my future wife inshaAllah.
-        </p>
-      </section>
+          <div class="list" id="futureList"></div>
+        </section>
 
-      <!-- DRESS-UP ROOM -->
-      <section class="room" id="room-dressup">
-        <div class="section-title">👗 Dress-up room</div>
-        <div class="section-subtitle">
-          Our little avatar closet until we’re dressing up in the same house.
-        </div>
+        <!-- LETTERS ROOM -->
+        <section class="room" id="room-letters">
+          <div class="section-title">📬 Letters room</div>
+          <div class="section-subtitle">
+            When you miss me, open a letter and pretend I just sent it now.
+          </div>
 
-        <div class="avatars">
-          <span id="avatarYou">🧑‍💻</span>
-          <span id="avatarHer">👰‍♀️</span>
-        </div>
-        <p class="tagline" id="dressupTagline">
-          Today’s vibe: comfy, on call, missing each other.
-        </p>
+          <button class="btn-main" id="openLetterBtn" style="width:100%;">Open a letter 💌</button>
+          <p class="message" id="letterMessage" style="margin-top:8px; min-height:60px;">
+            Your mailbox here is always full, never “seen 2:14 am, no reply”.
+          </p>
 
-        <select class="select" id="outfitSelect">
-          <option value="comfy">Comfy hoodie and sweatpants day</option>
-          <option value="fancy">Fancy date night (video call edition)</option>
-          <option value="wedding">Wedding outfits, signing our papers inshaAllah</option>
-          <option value="travel">Airport outfits, finally flying to each other</option>
-          <option value="home">At home clothes, same kitchen, same sofa</option>
-        </select>
+          <p class="small-text">
+            Later I’ll add longer letters written just for you, my future wife inshaAllah.
+          </p>
+        </section>
 
-        <p class="small-text">
-          One day we upgrade this to real avatars with real outfits from our real closet.
-        </p>
-      </section>
+        <!-- DRESS-UP ROOM -->
+        <section class="room" id="room-dressup">
+          <div class="section-title">👗 Dress-up room</div>
+          <div class="section-subtitle">
+            Our mini closet until we’re dressing up in the same house.
+          </div>
 
-      <!-- KITCHEN ROOM -->
-      <section class="room" id="room-kitchen">
-        <div class="section-title">🍳 Kitchen</div>
-        <div class="section-subtitle">
-          Our future menu: things we’ll cook, burn, and eat together.
-        </div>
+          <div class="avatars">
+            <span id="avatarYou">🧑‍💻</span>
+            <span id="avatarHer">👰‍♀️</span>
+          </div>
+          <p class="tagline" id="dressupTagline">
+            Today’s vibe: comfy, on call, missing each other.
+          </p>
 
-        <textarea class="textarea" id="kitchenInput" placeholder="Dish to cook together, dessert to try, breakfast idea..."></textarea>
-        <button class="btn-secondary" id="addKitchenBtn">Add to our recipe list</button>
-        <p class="small-text">
-          For now it’s planning. One day inshaAllah, same kitchen, same table, same “bismillah”.
-        </p>
+          <select class="select" id="outfitSelect">
+            <option value="comfy">Comfy hoodie and sweatpants day</option>
+            <option value="fancy">Fancy date night (video call edition)</option>
+            <option value="wedding">Wedding outfits, signing our papers inshaAllah</option>
+            <option value="travel">Airport outfits, finally flying to each other</option>
+            <option value="home">At home clothes, same kitchen, same sofa</option>
+          </select>
 
-        <div class="kitchen-list-title">Our future menu:</div>
-        <div class="list" id="kitchenList"></div>
-      </section>
+          <p class="small-text">
+            One day we upgrade this to real avatars with real outfits from our actual closet.
+          </p>
+        </section>
 
-    </main>
+        <!-- KITCHEN ROOM -->
+        <section class="room" id="room-kitchen">
+          <div class="section-title">🍳 Kitchen</div>
+          <div class="section-subtitle">
+            Our future menu: things we’ll cook, burn, and eat together.
+          </div>
+
+          <textarea class="textarea" id="kitchenInput" placeholder="Dish to cook together, dessert to try, breakfast idea..."></textarea>
+          <button class="btn-secondary" id="addKitchenBtn">Add to our recipe list</button>
+          <p class="small-text">
+            For now it’s planning. One day inshaAllah: same kitchen, same table, same “bismillah”.
+          </p>
+
+          <div class="kitchen-list-title">Our future menu:</div>
+          <div class="list" id="kitchenList"></div>
+        </section>
+      </main>
+    </div>
   </div>
 
   <script>
-    // ---------- Room navigation ----------
-    const tabs = document.querySelectorAll(".room-tab");
+    // --- Landing / front door ---
+    const landing = document.getElementById("landing");
+    const house = document.getElementById("house");
+    const enterHouseBtn = document.getElementById("enterHouseBtn");
+
+    enterHouseBtn.addEventListener("click", () => {
+      landing.style.display = "none";
+      house.style.display = "block";
+    });
+
+    // --- Room metadata for tour + map ---
+    const roomOrder = [
+      "pet",
+      "love",
+      "prayer",
+      "feelings",
+      "game",
+      "future",
+      "letters",
+      "dressup",
+      "kitchen",
+    ];
+
+    const roomInfo = {
+      pet: {
+        emoji: "🐾",
+        name: "Pet room",
+        note: "Feed our little pet",
+      },
+      love: {
+        emoji: "🛏",
+        name: "Love room",
+        note: "Just you & me",
+      },
+      prayer: {
+        emoji: "🕌",
+        name: "Prayer room",
+        note: "Du’a & barakah",
+      },
+      feelings: {
+        emoji: "💬",
+        name: "Feelings room",
+        note: "Heart check-in",
+      },
+      game: {
+        emoji: "🎮",
+        name: "Game room",
+        note: "X & O battles",
+      },
+      future: {
+        emoji: "🗺",
+        name: "Future room",
+        note: "Plans & dreams",
+      },
+      letters: {
+        emoji: "📬",
+        name: "Letters room",
+        note: "Open when you miss me",
+      },
+      dressup: {
+        emoji: "👗",
+        name: "Dress-up",
+        note: "Outfits & vibes",
+      },
+      kitchen: {
+        emoji: "🍳",
+        name: "Kitchen",
+        note: "Our future menu",
+      },
+    };
+
     const rooms = {
       pet: document.getElementById("room-pet"),
       love: document.getElementById("room-love"),
@@ -515,17 +824,67 @@
       kitchen: document.getElementById("room-kitchen"),
     };
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const roomName = tab.getAttribute("data-room");
+    const tourLocationText = document.getElementById("tourLocationText");
+    const nextRoomBtn = document.getElementById("nextRoomBtn");
+    const mapFloorplan = document.getElementById("mapFloorplan");
 
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
+    let currentRoomKey = "pet";
 
-        Object.values(rooms).forEach(r => r.classList.remove("active"));
-        rooms[roomName].classList.add("active");
+    // Build the map tiles
+    function buildMap() {
+      mapFloorplan.innerHTML = "";
+      roomOrder.forEach((key) => {
+        const info = roomInfo[key];
+        const tile = document.createElement("button");
+        tile.className = "room-tile";
+        tile.dataset.room = key;
+
+        tile.innerHTML = `
+          <div class="room-tile-emoji">${info.emoji}</div>
+          <div class="room-tile-main">
+            <div class="room-tile-name">${info.name}</div>
+            <div class="room-tile-note">${info.note}</div>
+          </div>
+        `;
+
+        tile.addEventListener("click", () => {
+          goToRoom(key);
+        });
+
+        mapFloorplan.appendChild(tile);
       });
+    }
+
+    function updateMapActive() {
+      const tiles = mapFloorplan.querySelectorAll(".room-tile");
+      tiles.forEach((tile) => {
+        if (tile.dataset.room === currentRoomKey) {
+          tile.classList.add("active");
+        } else {
+          tile.classList.remove("active");
+        }
+      });
+    }
+
+    function goToRoom(key) {
+      currentRoomKey = key;
+
+      Object.values(rooms).forEach((r) => r.classList.remove("active"));
+      rooms[key].classList.add("active");
+
+      const info = roomInfo[key];
+      tourLocationText.textContent = `You walk into the ${info.emoji} ${info.name}.`;
+      updateMapActive();
+    }
+
+    nextRoomBtn.addEventListener("click", () => {
+      const idx = roomOrder.indexOf(currentRoomKey);
+      const nextIdx = (idx + 1) % roomOrder.length;
+      goToRoom(roomOrder[nextIdx]);
     });
+
+    buildMap();
+    updateMapActive();
 
     function randomFrom(list) {
       return list[Math.floor(Math.random() * list.length)];
@@ -840,8 +1199,7 @@
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_KITCHEN));
         if (Array.isArray(saved)) return saved;
-      } catch (e) {
-      }
+      } catch (e) {}
       return [];
     }
 
