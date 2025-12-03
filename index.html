@@ -15,6 +15,7 @@
 <body>
   <!-- Floating hearts layer -->
   <div id="heartLayer"></div>
+
   <div class="shell">
     <!-- FRONT DOOR / LANDING -->
     <section class="landing" id="landing">
@@ -41,227 +42,233 @@
 
     <!-- MAIN APP -->
     <section class="house hidden" id="house">
-      <header class="house-header">
-        <div class="house-header-main">
-          <div>
-            <div class="house-title">🏠 Our Little Love House</div>
-            <div class="house-subtitle" id="tourLocationText">
-              You step into the 🐾 Pet room.
-            </div>
-          </div>
-          <button class="icon-btn" id="openMapBtn" aria-label="Open house map">
-            🗺
-          </button>
-        </div>
-        <div class="house-header-sub">
-          <span id="roomIndexText">Room 1 of 9</span>
-          <button class="btn-tour" id="nextRoomBtn">Next room ➜</button>
-        </div>
-      </header>
-
-      <main class="house-main">
-        <!-- SWIPE AREA -->
-        <div class="swipe-hint">Swipe left / right to move between rooms</div>
-
-        <div class="rooms-wrapper" id="roomsWrapper">
-          <!-- Each .room-slide is one room (100% width) -->
-
-          <!-- PET ROOM -->
-          <section class="room-slide" data-room-key="pet">
-            <div class="section-title">🐾 Pet room</div>
-            <div class="section-subtitle">
-              First stop: our tiny pet that survives only on your hugs and kisses.
-            </div>
-
-            <div class="pet" id="pet">🐻‍❄️</div>
-
-            <div class="stats">
+      <!-- 🔥 3D scene wrapper added here -->
+      <div class="scene">
+        <div class="house-card" id="houseCard">
+          <header class="house-header">
+            <div class="house-header-main">
               <div>
-                <span class="stat-label">Kisses:</span>
-                <span id="kissCount">0</span>
+                <div class="house-title">🏠 Our Little Love House</div>
+                <div class="house-subtitle" id="tourLocationText">
+                  You step into the 🐾 Pet room.
+                </div>
               </div>
-              <div>
-                <span class="stat-label">Hugs:</span>
-                <span id="hugCount">0</span>
-              </div>
+              <button class="icon-btn" id="openMapBtn" aria-label="Open house map">
+                🗺
+              </button>
             </div>
-
-            <p class="message" id="petMessage">Salam ya habibti, I’m your tiny pet 👋</p>
-
-            <div class="buttons-row">
-              <button class="btn-main" id="kissBtn">Send Kiss 💋</button>
-              <button class="btn-main" id="hugBtn">Send Hug 🤗</button>
+            <div class="house-header-sub">
+              <span id="roomIndexText">Room 1 of 9</span>
+              <button class="btn-tour" id="nextRoomBtn">Next room ➜</button>
             </div>
+          </header>
 
-            <p class="footer-note">
-              Even if this number gets huge, it’s still less than how much I love you.
-            </p>
-          </section>
+          <main class="house-main">
+            <!-- SWIPE AREA -->
+            <div class="swipe-hint">Swipe left / right to move between rooms</div>
 
-          <!-- LOVE ROOM -->
-          <section class="room-slide" data-room-key="love">
-            <div class="section-title">🛏 Love room</div>
-            <div class="section-subtitle">
-              Our room. No stress, no drama, just me and you.
+            <div class="rooms-wrapper" id="roomsWrapper">
+              <!-- Each .room-slide is one room (100% width) -->
+
+              <!-- PET ROOM -->
+              <section class="room-slide" data-room-key="pet">
+                <div class="section-title">🐾 Pet room</div>
+                <div class="section-subtitle">
+                  First stop: our tiny pet that survives only on your hugs and kisses.
+                </div>
+
+                <div class="pet" id="pet">🐻‍❄️</div>
+
+                <div class="stats">
+                  <div>
+                    <span class="stat-label">Kisses:</span>
+                    <span id="kissCount">0</span>
+                  </div>
+                  <div>
+                    <span class="stat-label">Hugs:</span>
+                    <span id="hugCount">0</span>
+                  </div>
+                </div>
+
+                <p class="message" id="petMessage">Salam ya habibti, I’m your tiny pet 👋</p>
+
+                <div class="buttons-row">
+                  <button class="btn-main" id="kissBtn">Send Kiss 💋</button>
+                  <button class="btn-main" id="hugBtn">Send Hug 🤗</button>
+                </div>
+
+                <p class="footer-note">
+                  Even if this number gets huge, it’s still less than how much I love you.
+                </p>
+              </section>
+
+              <!-- LOVE ROOM -->
+              <section class="room-slide" data-room-key="love">
+                <div class="section-title">🛏 Love room</div>
+                <div class="section-subtitle">
+                  Our room. No stress, no drama, just me and you.
+                </div>
+
+                <div class="love-meter">
+                  <label for="loveRange" class="label">
+                    How much do you love me today? (we both know 😏)
+                  </label>
+                  <input type="range" id="loveRange" min="80" max="100" value="100" />
+                  <div class="love-output" id="loveOutput">
+                    Love level: 100% (default setting for us 🤍)
+                  </div>
+                </div>
+
+                <button class="btn-main full-width" id="loveNoteBtn">Give me a love note ✉️</button>
+                <p class="message" id="loveNoteMessage" style="min-height:48px;">
+                  This room is just me and you, ya rohi.
+                </p>
+              </section>
+
+              <!-- PRAYER ROOM -->
+              <section class="room-slide" data-room-key="prayer">
+                <div class="section-title">🕌 Prayer room</div>
+                <div class="section-subtitle">
+                  Here we leave du’a for our future and trust Allah with the timing.
+                </div>
+
+                <textarea class="textarea" id="duaInput"
+                  placeholder="Write a small du’a or wish for me and you..."></textarea>
+                <button class="btn-secondary" id="addDuaBtn">Add to our du’a wall</button>
+                <p class="small-text">
+                  Stays on your device only. Between you, your heart, and Allah 🤍
+                </p>
+
+                <div class="list" id="duaList"></div>
+              </section>
+
+              <!-- FEELINGS ROOM -->
+              <section class="room-slide" data-room-key="feelings">
+                <div class="section-title">💬 Feelings room</div>
+                <div class="section-subtitle">
+                  A soft corner for days when your heart is heavy or extra happy.
+                </div>
+
+                <textarea class="textarea" id="feelingsInput" placeholder="Today I feel..."></textarea>
+                <button class="btn-secondary" id="copyFeelingsBtn">
+                  Copy to share with me
+                </button>
+                <p class="small-text">
+                  Paste it in WhatsApp or keep it here just for you.
+                </p>
+              </section>
+
+              <!-- GAME ROOM -->
+              <section class="room-slide" data-room-key="game">
+                <div class="section-title">🎮 Game room</div>
+                <div class="section-subtitle">
+                  Our little X and O corner. Perfect for calls or friendly beef.
+                </div>
+
+                <div class="board" id="board"></div>
+                <div class="game-status" id="gameStatus">Your turn: X</div>
+                <div class="center-row">
+                  <button class="btn-secondary" id="resetGameBtn">Reset game</button>
+                </div>
+              </section>
+
+              <!-- FUTURE ROOM -->
+              <section class="room-slide" data-room-key="future">
+                <div class="section-title">🗺 Future room</div>
+                <div class="section-subtitle">
+                  All the little and big things we’ll do together inshaAllah.
+                </div>
+
+                <textarea class="textarea" id="futureInput"
+                  placeholder="Trips, goals, little dreams... write one here."></textarea>
+                <button class="btn-secondary" id="addFutureBtn">
+                  Add to our future board
+                </button>
+                <p class="small-text">
+                  One day we’ll look back and say: Alhamdulillah, we did it.
+                </p>
+
+                <div class="list" id="futureList"></div>
+              </section>
+
+              <!-- LETTERS ROOM -->
+              <section class="room-slide" data-room-key="letters">
+                <div class="section-title">📬 Letters room</div>
+                <div class="section-subtitle">
+                  When you miss me, open a letter and pretend I just sent it.
+                </div>
+
+                <button class="btn-main full-width" id="openLetterBtn">
+                  Open a letter 💌
+                </button>
+                <p class="message" id="letterMessage" style="min-height:60px;">
+                  Your mailbox here is always full, never “seen 2:14 am, no reply”.
+                </p>
+
+                <p class="small-text">
+                  Later I’ll add longer letters written just for you, my future wife inshaAllah.
+                </p>
+              </section>
+
+              <!-- DRESS-UP ROOM -->
+              <section class="room-slide" data-room-key="dressup">
+                <div class="section-title">👗 Dress-up room</div>
+                <div class="section-subtitle">
+                  Our mini closet until we’re dressing up in the same house.
+                </div>
+
+                <div class="avatars">
+                  <span id="avatarYou">🧑‍💻</span>
+                  <span id="avatarHer">👰‍♀️</span>
+                </div>
+                <p class="tagline" id="dressupTagline">
+                  Today’s vibe: comfy, on call, missing each other.
+                </p>
+
+                <select class="select" id="outfitSelect">
+                  <option value="comfy">Comfy hoodie and sweatpants day</option>
+                  <option value="fancy">Fancy date night (video call edition)</option>
+                  <option value="wedding">
+                    Wedding outfits, signing our papers inshaAllah
+                  </option>
+                  <option value="travel">
+                    Airport outfits, finally flying to each other
+                  </option>
+                  <option value="home">
+                    At home clothes, same kitchen, same sofa
+                  </option>
+                </select>
+
+                <p class="small-text">
+                  One day we upgrade this to real avatars with real outfits from our closet.
+                </p>
+              </section>
+
+              <!-- KITCHEN ROOM -->
+              <section class="room-slide" data-room-key="kitchen">
+                <div class="section-title">🍳 Kitchen</div>
+                <div class="section-subtitle">
+                  Our future menu: things we’ll cook, burn, and eat together.
+                </div>
+
+                <textarea class="textarea" id="kitchenInput"
+                  placeholder="Dish to cook together, dessert to try, breakfast idea..."></textarea>
+                <button class="btn-secondary" id="addKitchenBtn">
+                  Add to our recipe list
+                </button>
+                <p class="small-text">
+                  For now it’s planning. One day inshaAllah: same kitchen, same table, same
+                  “bismillah”.
+                </p>
+
+                <p class="kitchen-list-title">Our future menu:</p>
+                <div class="list" id="kitchenList"></div>
+              </section>
             </div>
-
-            <div class="love-meter">
-              <label for="loveRange" class="label">
-                How much do you love me today? (we both know 😏)
-              </label>
-              <input type="range" id="loveRange" min="80" max="100" value="100" />
-              <div class="love-output" id="loveOutput">
-                Love level: 100% (default setting for us 🤍)
-              </div>
-            </div>
-
-            <button class="btn-main full-width" id="loveNoteBtn">Give me a love note ✉️</button>
-            <p class="message" id="loveNoteMessage" style="min-height:48px;">
-              This room is just me and you, ya rohi.
-            </p>
-          </section>
-
-          <!-- PRAYER ROOM -->
-          <section class="room-slide" data-room-key="prayer">
-            <div class="section-title">🕌 Prayer room</div>
-            <div class="section-subtitle">
-              Here we leave du’a for our future and trust Allah with the timing.
-            </div>
-
-            <textarea class="textarea" id="duaInput"
-              placeholder="Write a small du’a or wish for me and you..."></textarea>
-            <button class="btn-secondary" id="addDuaBtn">Add to our du’a wall</button>
-            <p class="small-text">
-              Stays on your device only. Between you, your heart, and Allah 🤍
-            </p>
-
-            <div class="list" id="duaList"></div>
-          </section>
-
-          <!-- FEELINGS ROOM -->
-          <section class="room-slide" data-room-key="feelings">
-            <div class="section-title">💬 Feelings room</div>
-            <div class="section-subtitle">
-              A soft corner for days when your heart is heavy or extra happy.
-            </div>
-
-            <textarea class="textarea" id="feelingsInput" placeholder="Today I feel..."></textarea>
-            <button class="btn-secondary" id="copyFeelingsBtn">
-              Copy to share with me
-            </button>
-            <p class="small-text">
-              Paste it in WhatsApp or keep it here just for you.
-            </p>
-          </section>
-
-          <!-- GAME ROOM -->
-          <section class="room-slide" data-room-key="game">
-            <div class="section-title">🎮 Game room</div>
-            <div class="section-subtitle">
-              Our little X and O corner. Perfect for calls or friendly beef.
-            </div>
-
-            <div class="board" id="board"></div>
-            <div class="game-status" id="gameStatus">Your turn: X</div>
-            <div class="center-row">
-              <button class="btn-secondary" id="resetGameBtn">Reset game</button>
-            </div>
-          </section>
-
-          <!-- FUTURE ROOM -->
-          <section class="room-slide" data-room-key="future">
-            <div class="section-title">🗺 Future room</div>
-            <div class="section-subtitle">
-              All the little and big things we’ll do together inshaAllah.
-            </div>
-
-            <textarea class="textarea" id="futureInput"
-              placeholder="Trips, goals, little dreams... write one here."></textarea>
-            <button class="btn-secondary" id="addFutureBtn">
-              Add to our future board
-            </button>
-            <p class="small-text">
-              One day we’ll look back and say: Alhamdulillah, we did it.
-            </p>
-
-            <div class="list" id="futureList"></div>
-          </section>
-
-          <!-- LETTERS ROOM -->
-          <section class="room-slide" data-room-key="letters">
-            <div class="section-title">📬 Letters room</div>
-            <div class="section-subtitle">
-              When you miss me, open a letter and pretend I just sent it.
-            </div>
-
-            <button class="btn-main full-width" id="openLetterBtn">
-              Open a letter 💌
-            </button>
-            <p class="message" id="letterMessage" style="min-height:60px;">
-              Your mailbox here is always full, never “seen 2:14 am, no reply”.
-            </p>
-
-            <p class="small-text">
-              Later I’ll add longer letters written just for you, my future wife inshaAllah.
-            </p>
-          </section>
-
-          <!-- DRESS-UP ROOM -->
-          <section class="room-slide" data-room-key="dressup">
-            <div class="section-title">👗 Dress-up room</div>
-            <div class="section-subtitle">
-              Our mini closet until we’re dressing up in the same house.
-            </div>
-
-            <div class="avatars">
-              <span id="avatarYou">🧑‍💻</span>
-              <span id="avatarHer">👰‍♀️</span>
-            </div>
-            <p class="tagline" id="dressupTagline">
-              Today’s vibe: comfy, on call, missing each other.
-            </p>
-
-            <select class="select" id="outfitSelect">
-              <option value="comfy">Comfy hoodie and sweatpants day</option>
-              <option value="fancy">Fancy date night (video call edition)</option>
-              <option value="wedding">
-                Wedding outfits, signing our papers inshaAllah
-              </option>
-              <option value="travel">
-                Airport outfits, finally flying to each other
-              </option>
-              <option value="home">
-                At home clothes, same kitchen, same sofa
-              </option>
-            </select>
-
-            <p class="small-text">
-              One day we upgrade this to real avatars with real outfits from our closet.
-            </p>
-          </section>
-
-          <!-- KITCHEN ROOM -->
-          <section class="room-slide" data-room-key="kitchen">
-            <div class="section-title">🍳 Kitchen</div>
-            <div class="section-subtitle">
-              Our future menu: things we’ll cook, burn, and eat together.
-            </div>
-
-            <textarea class="textarea" id="kitchenInput"
-              placeholder="Dish to cook together, dessert to try, breakfast idea..."></textarea>
-            <button class="btn-secondary" id="addKitchenBtn">
-              Add to our recipe list
-            </button>
-            <p class="small-text">
-              For now it’s planning. One day inshaAllah: same kitchen, same table, same
-              “bismillah”.
-            </p>
-
-            <p class="kitchen-list-title">Our future menu:</p>
-            <div class="list" id="kitchenList"></div>
-          </section>
+          </main>
         </div>
-      </main>
+      </div>
+      <!-- 🔥 end of 3D scene wrapper -->
     </section>
 
     <!-- MAP OVERLAY -->

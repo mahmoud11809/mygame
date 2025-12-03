@@ -16,6 +16,10 @@ enterHouseBtn.addEventListener("click", () => {
 // ---- Room config for swipe + map ----
 const roomsWrapper = $("#roomsWrapper");
 const slides = Array.from(roomsWrapper.querySelectorAll(".room-slide"));
+const houseCard = document.getElementById("houseCard");
+if (houseCard) {
+  houseCard.classList.add("idle");
+}
 
 const heartLayer = document.getElementById("heartLayer");
 
@@ -80,9 +84,19 @@ function updateRoomUI() {
 
   updateMapActive();
 
-  // little heart when you move between rooms
+  // 3D pop on room change
+  if (houseCard) {
+    houseCard.classList.remove("room-switch");
+    // force reflow so animation can retrigger
+    // eslint-disable-next-line no-unused-expressions
+    void houseCard.offsetWidth;
+    houseCard.classList.add("room-switch");
+  }
+
+  // room-change heart
   spawnHeart("room");
 }
+
 
 
 nextRoomBtn.addEventListener("click", () => {
@@ -195,6 +209,46 @@ function updateMapActive() {
 function randomFrom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
+
+// 3D tilt logic
+let tiltTimeout = null;
+
+function applyTiltFromPointer(clientX, clientY) {
+  if (!houseCard) return;
+
+  const rect = houseCard.getBoundingClientRect();
+  const midX = rect.left + rect.width / 2;
+  const midY = rect.top + rect.height / 2;
+
+  const relX = (clientX - midX) / (rect.width / 2); // -1 to 1
+  const relY = (clientY - midY) / (rect.height / 2); // -1 to 1
+
+  const maxTiltX = 10; // up/down
+  const maxTiltY = 14; // left/right
+
+  const tiltX = -relY * maxTiltX;
+  const tiltY = relX * maxTiltY;
+
+  houseCard.style.setProperty("--card-tilt-x", tiltX + "deg");
+  houseCard.style.setProperty("--card-tilt-y", tiltY + "deg");
+  houseCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(18px)`;
+  houseCard.classList.remove("idle");
+
+  if (tiltTimeout) clearTimeout(tiltTimeout);
+  tiltTimeout = setTimeout(() => {
+    houseCard.classList.add("idle");
+  }, 800);
+}
+
+// pointer move (mouse + touch)
+document.addEventListener(
+  "pointermove",
+  (e) => {
+    applyTiltFromPointer(e.clientX, e.clientY);
+  },
+  { passive: true }
+);
+
 
 // ---- PET ROOM LOGIC ----
 const kissBtn = $("#kissBtn");
