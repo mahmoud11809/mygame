@@ -68,11 +68,22 @@ const nextRoomBtn = $("#nextRoomBtn");
 function updateRoomUI() {
   const key = roomOrder[currentIndex];
   const info = roomInfo[key];
+
   roomsWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
   tourLocationText.textContent = `You step into the ${info.emoji} ${info.name}.`;
   roomIndexText.textContent = `Room ${currentIndex + 1} of ${roomOrder.length}`;
+
+  // highlight active slide
+  slides.forEach((slide, idx) => {
+    slide.classList.toggle("active-slide", idx === currentIndex);
+  });
+
   updateMapActive();
+
+  // little heart when you move between rooms
+  spawnHeart("room");
 }
+
 
 nextRoomBtn.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % roomOrder.length;
@@ -240,6 +251,7 @@ kissBtn.addEventListener("click", () => {
   petMessageEl.textContent = randomFrom(kissMessages);
   savePetStats(petStats);
   animatePet();
+  spawnHeart("kiss");
 });
 
 hugBtn.addEventListener("click", () => {
@@ -248,6 +260,7 @@ hugBtn.addEventListener("click", () => {
   petMessageEl.textContent = randomFrom(hugMessages);
   savePetStats(petStats);
   animatePet();
+  spawnHeart("hug");
 });
 
 // ---- LOVE ROOM ----
