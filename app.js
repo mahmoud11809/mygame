@@ -17,6 +17,33 @@ enterHouseBtn.addEventListener("click", () => {
 const roomsWrapper = $("#roomsWrapper");
 const slides = Array.from(roomsWrapper.querySelectorAll(".room-slide"));
 
+const heartLayer = document.getElementById("heartLayer");
+
+function spawnHeart(kind = "heart") {
+  if (!heartLayer) return;
+  const span = document.createElement("span");
+  span.className = "floating-heart";
+
+  if (kind === "kiss") span.textContent = "💋";
+  else if (kind === "hug") span.textContent = "🤗";
+  else if (kind === "room") span.textContent = "💖";
+  else span.textContent = "💕";
+
+  const startLeft = Math.random() * 100; // 0–100vw
+  const duration = 4000 + Math.random() * 2000; // 4–6s
+
+  span.style.left = startLeft + "vw";
+  span.style.animationDuration = duration + "ms";
+
+  heartLayer.appendChild(span);
+
+  setTimeout(() => {
+    if (span.parentNode === heartLayer) {
+      heartLayer.removeChild(span);
+    }
+  }, duration + 800);
+}
+
 const roomOrder = slides.map((slide) => slide.dataset.roomKey); // order from HTML
 
 const roomInfo = {
